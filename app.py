@@ -12,9 +12,11 @@ from config import ROOT,model_status,require_models
 from media import inspect_video,output_canvas,SHAPES
 import runtime
 import workspace
+from server_controls import ServerControls, add_server_controls, register_servers
 from network_settings import read_settings,save_settings,verify_login,launch_access_servers,install_upload_disconnect_handling
 
 VERSION=(ROOT/'VERSION').read_text().strip()
+SERVER_CONTROLS=ServerControls(lambda: [runtime.LOCK], lambda: None)
 CSS=(ROOT/'style.css').read_text()
 THEME=gr.themes.Base(primary_hue='amber',neutral_hue='slate').set(
     body_background_fill='#07101f',body_background_fill_dark='#07101f',
@@ -145,6 +147,7 @@ def build_demo():
                 expand=gr.Button('Expand video / exit fullscreen',variant='secondary')
                 expand.click(None,[],[],queue=False,js="""async()=>{const b=document.querySelector('#result-video'),v=b?.querySelector('video');if(!v)return;if(document.fullscreenElement){await document.exitFullscreen();return;}if(b.classList.contains('expanded-video')){b.classList.remove('expanded-video');return;}try{if(v.requestFullscreen){await v.requestFullscreen();return;}if(v.webkitEnterFullscreen){v.webkitEnterFullscreen();return;}}catch(e){}b.classList.add('expanded-video');}""")
             with gr.Tab('Settings',id='settings'):
+                add_server_controls(SERVER_CONTROLS)
                 gr.Markdown(f'### GGF Bernini · {VERSION}')
                 installed=gr.Textbox(label='Models',value=model_status,lines=5,interactive=False)
                 refresh=gr.Button('Check model files',variant='secondary')
@@ -215,4 +218,5 @@ if __name__=='__main__':
     auth=(lambda u,p:verify_login(u,p,saved)) if saved['digest'] else None
     local,remote,local_url,remote_url=launch_access_servers(build_demo,mode=saved['mode'],preferred_port=int(os.environ.get('GGF_BERNINI_PORT','7864')),auth=auth,inbrowser='--no-browser' not in os.sys.argv,css=CSS,theme=THEME,allowed_paths=[str(ROOT/'jobs')],show_error=True,footer_links=[])
     ACTIVE_URLS.update(Local=local_url,Remote=remote_url)
+    register_servers(local,remote)
     local.block_thread()

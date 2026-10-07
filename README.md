@@ -1,5 +1,10 @@
 # GGF Bernini
 
+Settings includes **Release models / free GPU memory** and **Stop server**.
+Release keeps the app and phone connection open; Bernini already unloads its
+worker after each finished job. Stop server asks for confirmation and requires
+restarting RUN.bat on the local PC. Finish or cancel active generation first.
+
 **Reshape your video. Keep the performance.**
 
 Get going fast with [GGF tools and setup helpers](https://getgoingfast.pro)

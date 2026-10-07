@@ -53,6 +53,8 @@ def generate(request, owner, progress):
         updates['output'] = None
     failure = None
     try:
+        from server_controls import ensure_running
+        ensure_running()
         workspace.save(owner,**updates)
         job = job_directory()
         request = {**settings(), **request, 'job': str(job)}
