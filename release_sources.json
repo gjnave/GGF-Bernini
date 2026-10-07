@@ -1,0 +1,22 @@
+{
+  "mirrors": [
+    {
+      "name": "Codeberg",
+      "api": "https://codeberg.org/api/v1/repos/Cognibuild/GGF-Bernini/branches/main",
+      "archive": "https://codeberg.org/Cognibuild/GGF-Bernini/archive/{revision}.zip"
+    },
+    {
+      "name": "GitHub",
+      "api": "https://api.github.com/repos/gjnave/GGF-Bernini/commits/main",
+      "archive": "https://github.com/gjnave/GGF-Bernini/archive/{revision}.zip"
+    }
+  ],
+  "required": [
+    "app.py",
+    "worker.py",
+    "requirements.txt",
+    "update_app.py",
+    "release_sources.json",
+    "VERSION"
+  ]
+}

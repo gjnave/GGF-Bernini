@@ -1,0 +1,14 @@
+.venv/
+models/
+jobs/
+logs/
+__pycache__/
+*.pyc
+local_settings.json
+network_settings.json
+app.lock
+.gradio/
+.installed-revision.json
+release-manifest.json
+*.bat
+*.zip

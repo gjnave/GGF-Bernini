@@ -1,0 +1,28 @@
+SPDX-License-Identifier: GPL-3.0-only
+
+ComfyUI-RH-Bernini
+
+Project author and maintainer: https://github.com/flybirdxx
+
+This custom node package is distributed under the GNU General Public
+License version 3.0 only because it backports and patches ComfyUI runtime
+code from ComfyUI pull request #14216.
+
+The full GPL-3.0 license text is available at:
+https://www.gnu.org/licenses/gpl-3.0.txt
+
+Upstream ComfyUI license:
+https://github.com/comfyanonymous/ComfyUI/blob/master/LICENSE
+
+Portions of the prompt-enhancement templates and task routing are adapted
+from the ByteDance Bernini project, which is licensed under Apache-2.0.
+
+ByteDance Bernini repository:
+https://github.com/bytedance/Bernini
+
+ByteDance Bernini license:
+https://github.com/bytedance/Bernini/blob/main/LICENSE
+
+Model weights are not included in this package. The official Bernini model
+weights, Wan2.2 base weights, and third-party ComfyUI-compatible weights
+are governed by their own license terms on their respective model pages.

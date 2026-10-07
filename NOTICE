@@ -1,0 +1,8 @@
+GGF Bernini — Get Going Fast, 2026.
+
+Includes selected ComfyUI inference modules from Comfy-Org/ComfyUI under GPLv3.
+Includes Bernini conditioning from RH-RunningHub/ComfyUI-RH-Bernini and the
+gjnave/bernini-comfy-standalone compatibility fixes under GPL-3.0-only.
+See LICENSE and vendor/*/SOURCE.md for provenance and upstream notices.
+The GGF app code is distributed under GPLv3 with the included core.
+Model weights are downloaded separately and retain their respective licenses.

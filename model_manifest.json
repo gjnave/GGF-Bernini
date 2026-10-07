@@ -1,0 +1,9 @@
+{
+  "models": [
+    {"label":"Bernini HIGH FP8", "repo":"Comfy-Org/Bernini-R", "revision":"8e6d2ce0c2ead4dd237482c504ea9e4ae5b15347", "file":"diffusion_models/wan2.2_bernini_r_high_noise_fp8_scaled.safetensors", "dest":"diffusion_models/Bernini_HIGH_fp8_e4m3fn_scaled.safetensors", "size":15574833216, "sha256":"9ff3d7369da98f8eaf71045f7d0e99d5e344eea5e7dc934a930608786fe73f52"},
+    {"label":"Bernini LOW FP8", "repo":"Comfy-Org/Bernini-R", "revision":"8e6d2ce0c2ead4dd237482c504ea9e4ae5b15347", "file":"diffusion_models/wan2.2_bernini_r_low_noise_fp8_scaled.safetensors", "dest":"diffusion_models/Bernini_LOW_fp8_e4m3fn_scaled.safetensors", "size":15574833216, "sha256":"ce35c070f345c91abe43d6bf29b0eccb8687e4026fadc0e0a70a73c9afb7bbb3"},
+    {"label":"UMT5 text encoder FP8", "repo":"Comfy-Org/Wan_2.1_ComfyUI_repackaged", "revision":"123acf1cc74bccbb9bfff8ac1ee72edc08c2341d", "file":"split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors", "dest":"text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors", "size":6735906897, "sha256":"c3355d30191f1f066b26d93fba017ae9809dce6c627dda5f6a66eaa651204f68"},
+    {"label":"Wan 2.1 VAE BF16", "repo":"Kijai/WanVideo_comfy", "revision":"8260d429d19fd7a72304cad059160b95d843913f", "file":"Wan2_1_VAE_bf16.safetensors", "dest":"vae/Wan2_1_VAE_bf16.safetensors", "size":253806278, "sha256":"1ab9a32cc2c740f6e39d80d367ce5dcc28db8c71b79b28670546b8973e9d75f9"},
+    {"label":"LightX2V speed adapter", "repo":"Kijai/WanVideo_comfy", "revision":"8260d429d19fd7a72304cad059160b95d843913f", "file":"Lightx2v/lightx2v_T2V_14B_cfg_step_distill_v2_lora_rank64_bf16.safetensors", "dest":"loras/lightx2v_T2V_14B_cfg_step_distill_v2_lora_rank64_bf16.safetensors", "size":630697104, "sha256":"37d49218544b9e0bfb8e831d1399f451fbc5068aff6474f42a90c928363c3573"}
+  ]
+}
