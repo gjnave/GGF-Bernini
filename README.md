@@ -31,7 +31,9 @@ under jobs. Persistent progress and a Stop button show/control owned generation.
 
 Uses Bernini-R FP8 HIGH/LOW, UMT5 FP8, Wan 2.1 BF16 VAE, and the workflow's
 LightX2V speed adapter. Pinned models total about 36.1 GiB. Windows 64-bit,
-Python 3.11, NVIDIA GPU, CUDA-13-compatible driver; 24 GB development GPU.
+an NVIDIA GPU, and a CUDA-13-compatible driver are required; the installer
+downloads its private Python 3.11 runtime automatically. Development used a
+24 GB GPU.
 No full ComfyUI installation or server is required. Selected inference core and
 Bernini conditioning code are included with their upstream licenses.
 
@@ -40,13 +42,12 @@ on media and settings; do not treat a short smoke result as a universal benchmar
 
 ## Install from source and update
 
-Clone https://codeberg.org/Cognibuild/GGF-Bernini (or https://github.com/gjnave/GGF-Bernini). In Command Prompt, enter that folder and run:
+Clone https://codeberg.org/Cognibuild/GGF-Bernini (or https://github.com/gjnave/GGF-Bernini). Install `uv`, then in Command Prompt enter that folder and run:
 
 ```bat
-py -3.11 -m venv .venv
-.venv\Scripts\python.exe -m pip install --upgrade pip
-.venv\Scripts\python.exe -m pip install torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0 --index-url https://download.pytorch.org/whl/cu130
-.venv\Scripts\python.exe -m pip install -r requirements.txt
+uv venv --managed-python --python 3.11 .venv
+uv pip install --python .venv\Scripts\python.exe torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0 --index-url https://download.pytorch.org/whl/cu130
+uv pip install --python .venv\Scripts\python.exe -r requirements.txt
 .venv\Scripts\python.exe download_models.py
 .venv\Scripts\python.exe app.py
 ```
