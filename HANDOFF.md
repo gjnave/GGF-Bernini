@@ -1,5 +1,21 @@
 # GGF Bernini handoff — October 6, 2026
 
+## Bundled core source correction — October 8, 2026
+
+The repository's unanchored `models/` ignore rule excluded the required Python
+source `vendor/comfy_core/comfy/ldm/models/autoencoder.py`. Local generation
+worked because the ignored file existed locally, but both published repository
+archives and the customer package omitted it. The member error was
+`No module named 'comfy.ldm.models'`.
+
+The ignore rule is now `/models/`, protecting only the app's downloaded weights.
+The upstream autoencoder source must be tracked and included in releases.
+release_sources.json also requires this file during archive validation.
+Verify repository/package contents and a CPU core import from extracted source
+when changing bundling; a local checkout alone can conceal ignored-file defects.
+Members with the incomplete release can close the app, run UPDATE.bat, and
+restart RUN.bat. No model redownload or environment recreation is needed.
+
 ## Update-system correction — October 7, 2026
 
 The app now publishes individual source files at Codeberg Cognibuild/GGF-Bernini

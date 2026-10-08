@@ -17,6 +17,7 @@
     "requirements.txt",
     "update_app.py",
     "release_sources.json",
-    "VERSION"
+    "VERSION",
+    "vendor/comfy_core/comfy/ldm/models/autoencoder.py"
   ]
 }
