@@ -99,7 +99,9 @@ def run(request):
         pixels=pixels[:original_count]
         del result
         progress('Saving your video and retaining original audio')
-        output=job/f'GGF-Bernini-{datetime.now():%Y%m%d-%H%M%S}-{uuid.uuid4().hex[:10]}.mp4'
+        output_folder=ROOT/'outputs'
+        output_folder.mkdir(parents=True,exist_ok=True)
+        output=output_folder/f'GGF-Bernini-{datetime.now():%Y%m%d-%H%M%S}-{uuid.uuid4().hex[:10]}.mp4'
         save_video(pixels.cpu().numpy(),output,request['video'],request['start'],length,job/'silent.mp4')
     return dict(output=str(output),seconds=round(time.perf_counter()-started,2),width=width,height=height,frames=original_count,seed=seed,peak_vram_gib=round(torch.cuda.max_memory_allocated()/2**30,2))
 

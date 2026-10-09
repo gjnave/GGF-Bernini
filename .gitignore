@@ -1,5 +1,6 @@
 .venv/
 /models/
+/outputs/
 jobs/
 logs/
 __pycache__/

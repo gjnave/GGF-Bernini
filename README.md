@@ -27,7 +27,9 @@ in memory; unlimited duration is not a promise of unlimited memory.
 
 Inputs/controls/results are persisted for the same browser/app address. A new
 temporary public URL has separate browser site storage. Saved results remain
-under jobs. Persistent progress and a Stop button show/control owned generation.
+under `outputs`, which the app creates automatically. Temporary processing files
+remain under `jobs`; older results already saved there remain available.
+Persistent progress and a Stop button show/control owned generation.
 
 Uses Bernini-R FP8 HIGH/LOW, UMT5 FP8, Wan 2.1 BF16 VAE, and the workflow's
 LightX2V speed adapter. Pinned models total about 36.1 GiB. Windows 64-bit,

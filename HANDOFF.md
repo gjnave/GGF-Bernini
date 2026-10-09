@@ -2,6 +2,11 @@
 
 ## Bundled core source correction — October 8, 2026
 
+Completed videos now save to the app's automatically created `outputs` folder,
+using the existing timestamp/random filenames. `jobs` holds processing files
+and logs. Existing results under jobs are preserved and still load normally.
+Ignore `/outputs/` in Git; the updater already protects this private directory.
+
 The repository's unanchored `models/` ignore rule excluded the required Python
 source `vendor/comfy_core/comfy/ldm/models/autoencoder.py`. Local generation
 worked because the ignored file existed locally, but both published repository
