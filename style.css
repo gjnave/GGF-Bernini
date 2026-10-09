@@ -44,6 +44,9 @@ button.secondary {background:#192d47!important;color:#edf4ff!important;border:1p
 [role=tab][aria-selected=true] {background:#f5b942!important;color:#07101f!important;font-weight:750!important}
 .toast-wrap .message,.toast-wrap .toast,.toast-wrap .error {background:#17253a!important;color:#fff!important;border-color:#fc6464!important}
 .ggf-footer {text-align:center;color:#a8bbd3;font-size:12px;padding:20px 8px}.ggf-note {font-size:14px;color:#c3d2e6;padding:10px 0}
+.render-warning {border:3px solid #f5b942;border-radius:12px;background:#17253a;padding:18px;color:#e8eef9}
+.render-warning strong {display:block;color:#ffcf67;font-size:20px;line-height:1.3}
+.render-warning p {margin:10px 0 0;font-size:16px;line-height:1.5}
 #job-status {border-left:3px solid #f5b942;padding-left:13px;min-height:36px}
 .update-ready {box-shadow:0 0 14px #f5b942;border:2px solid #f5b942!important}
 @media(max-width:640px) {

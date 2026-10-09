@@ -1,5 +1,25 @@
 # GGF Bernini handoff — October 6, 2026
 
+## Turbo recommendation — October 9, 2026
+
+Turbo is now the primary Create action and Ctrl+Enter action. Full-size rendering
+is inside a closed Advanced accordion with a prominent VRAM/runtime warning.
+The size notice reports both the actual rounded Turbo canvas and the advanced
+full-size canvas; both use the same Turbo-size calculation as generation.
+
+Observed on the RTX 4090 24 GB using a 10.125-second 1296 × 720 source:
+the 864 × 480 full-size pass took 2:36:24 for its first sampling step before
+being interrupted at the user's request. It did not produce a finished video.
+The complete 448 × 256 Turbo pass took 756.18 seconds, saved 243 frames with
+original audio, and replaced the subject. These are example timings, not
+guarantees or a validated minimum VRAM requirement. More VRAM alone does not
+guarantee quick full-size rendering.
+
+UI construction and actual Turbo dimension rounding were checked. Publish only
+the source changes to both repositories; rebuild the customer installer using
+the existing tracked-file package builder, then back up and read back the
+existing member-download ZIP before reporting the deployment complete.
+
 ## Bundled core source correction — October 8, 2026
 
 Completed videos now save to the app's automatically created `outputs` folder,
@@ -96,7 +116,8 @@ App-owned worker ends after each generation, releasing VRAM. Both model stages
 are sequential. Video is currently encoded/decoded as a whole clip in RAM.
 Long durations have no arbitrary hard cap but can exceed memory. Defaults are
 three seconds; reduce size/duration on OOM. Do not call low-VRAM GPUs validated.
-Full-size 480p generation has not been separately benchmarked in this build.
+See the October 9 observations above for the interrupted full-size benchmark
+and completed Turbo character edit.
 
 The source updater supports verified ZIP staging, source backups, safe paths,
 and preservation of models/jobs/config/environment. release_sources.json is

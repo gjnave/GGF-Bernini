@@ -52,13 +52,17 @@ def remember(state,*values):
     for key in ['video','reference']: form[key]=workspace.keep_file(state['owner'],form[key])
     workspace.save(state['owner'],form=form)
 
+def turbo_size(size):
+    return max(32,round(float(size)/2/32)*32)
+
 def dimensions(video,start,duration,size,shape):
     if not video: return 'Upload a video to detect its orientation and output size.'
     try:
         meta=inspect_video(video)
         w,h=output_canvas(meta,float(size),shape)
+        tw,th=output_canvas(meta,turbo_size(size),shape)
         seconds=min(float(duration) or meta['duration'],max(0,meta['duration']-float(start)))
-        return f"Input {meta['width']} × {meta['height']} · {meta['duration']:.1f}s. Output {w} × {h} · up to {seconds:.1f}s. Original audio retained."
+        return f"Input {meta['width']} × {meta['height']} · {meta['duration']:.1f}s. Recommended Turbo output {tw} × {th}. Advanced full-size output {w} × {h} · up to {seconds:.1f}s. Original audio retained."
     except Exception as error: return str(error)
 
 def edit(state,*values,turbo=False,progress=gr.Progress()):
@@ -76,7 +80,7 @@ def edit(state,*values,turbo=False,progress=gr.Progress()):
         remember(state,*values)
         saved=workspace.load(state['owner'])['form']
         request={**form,'video':saved['video'],'reference':saved['reference'],'mode':'video'}
-        request['size']=max(32,round(float(form['size'])/2/32)*32) if turbo else int(form['size'])
+        request['size']=turbo_size(form['size']) if turbo else int(form['size'])
     except Exception as error: raise gr.Error(str(error)) from None
     yield None,'Starting Bernini…'
     try:
@@ -135,12 +139,15 @@ def build_demo():
                     start=gr.Number(label='Start (seconds)',value=0,minimum=0)
                     duration=gr.Number(label='Duration (seconds) · 0 = to end',value=3,minimum=0)
                 with gr.Row():
-                    size=gr.Dropdown([384,480,576,768],value=480,allow_custom_value=True,label='Output short edge (pixels)')
+                    size=gr.Dropdown([384,480,576,768],value=480,allow_custom_value=True,label='Base short edge (pixels) · Turbo uses half')
                     shape=gr.Dropdown(['Match uploaded video',*SHAPES],value='Match uploaded video',label='Shape',interactive=True)
                 size_notice=gr.Markdown('Upload a video to detect its orientation and output size.')
-                gr.Markdown('Turbo halves the selected dimensions. Start with a short clip; longer videos and larger images require more memory and time. There is no fixed duration cap.')
-                turbo=gr.Button('Turbo preview · half size · Ctrl+Enter',variant='primary',elem_id='turbo-edit')
-                render=gr.Button('Generate edit · full size',variant='primary')
+                gr.HTML('<div class="render-warning" role="note"><strong>USE TURBO — RECOMMENDED FOR NORMAL USE</strong><p>Full-size editing can take many hours, even on a 24 GB GPU. Use Turbo unless you have substantially more GPU VRAM and are prepared for very long renders. Longer clips and larger dimensions increase memory use and render time.</p></div>')
+                gr.Markdown('Turbo uses half the selected base dimensions, rounded to multiples of 32. Start with a short clip. There is no fixed duration cap.')
+                turbo=gr.Button('Generate edit · Turbo recommended · Ctrl+Enter',variant='primary',elem_id='turbo-edit')
+                with gr.Accordion('Advanced: full-size render · may take many hours',open=False):
+                    gr.Markdown('**Use Turbo first.** In a local 10-second test on an RTX 4090 with 24 GB VRAM, a single 864 × 480 sampling step took over 2½ hours. The 448 × 256 Turbo edit finished in about 13 minutes. These are examples, not time guarantees; more VRAM alone does not guarantee a fast full-size render.')
+                    render=gr.Button('Generate full-size edit · very high VRAM / long runtime',variant='secondary')
                 stop=gr.Button('Stop current generation',variant='secondary')
                 status=gr.Markdown('Upload a video, describe the edit, and generate.',elem_id='job-status')
                 output=gr.Video(label='Your edited video · original audio retained',height=560,interactive=False,format='mp4',elem_id='result-video')

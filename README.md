@@ -11,8 +11,16 @@ Get going fast with [GGF tools and setup helpers](https://getgoingfast.pro)
 and [The AI Hobby Guy on YouTube](https://youtube.com/@TheAIHobbyGuy).
 
 Upload a video, optionally add a reference photo, and describe what should
-change. Generate a Turbo preview or a full-size edit. The app retains source
+change. Use the recommended Turbo edit. The app retains source
 audio and saves each result with a unique download filename.
+
+**Use Turbo for normal use. Full-size editing can take many hours, even with
+24 GB of GPU VRAM.** Full-size rendering is tucked inside a closed Advanced
+control with a prominent warning. Use it only with substantially more VRAM
+and willingness to wait; more VRAM alone does not guarantee a fast render.
+In a local 10-second RTX 4090 test, one 864 × 480 full-size sampling step took
+over 2½ hours, while the complete 448 × 256 Turbo edit took about 13 minutes.
+These observed timings are examples, not universal benchmarks.
 
 The main page is kept simple. Settings contains model checks, sampling controls,
 updates, and phone access. Choose Temporary public link, optionally set a
