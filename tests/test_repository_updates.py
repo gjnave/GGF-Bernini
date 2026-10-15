@@ -46,7 +46,7 @@ class RepositoryUpdates(unittest.TestCase):
     def test_invalid_archive_cannot_write_protected_paths(self):
         root=Path(tempfile.mkdtemp(prefix='ggf-invalid-update-'))
         cfg={'required':['app.py','update_app.py','release_sources.json']}
-        for bad in ['../outside.py','network_settings.json','models/weights','C:/outside.py']:
+        for bad in ['../outside.py','network_settings.json','models/weights','runtime/uv.exe','C:/outside.py']:
             archive=root/(str(abs(hash(bad)))+'.zip')
             archive.write_bytes(self.make_archive(cfg,{bad:'bad'}))
             stage=root/(str(abs(hash(bad)))+'-stage')

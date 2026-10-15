@@ -52,6 +52,12 @@ on media and settings; do not treat a short smoke result as a universal benchmar
 
 ## Install from source and update
 
+The member download is installer-only: extract it, run `INSTALL.bat`, then
+`RUN.bat`. Setup downloads the individual app files from Codeberg, with GitHub
+fallback, and provisions UV-managed Python 3.11, dependencies and model weights.
+The ZIP never includes application source, models, an environment or runtime.
+Keep all extracted root files together; setup creates `GGF-Bernini` beside them.
+
 Clone https://codeberg.org/Cognibuild/GGF-Bernini (or https://github.com/gjnave/GGF-Bernini). Install `uv`, then in Command Prompt enter that folder and run:
 
 ```bat

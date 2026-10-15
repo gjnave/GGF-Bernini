@@ -1,5 +1,26 @@
 # GGF Bernini handoff — October 6, 2026
 
+## Installer-only distribution correction — October 14, 2026
+
+Current working install: D:/ggf-apps/bernini/GGF-Bernini. Root setup files and
+customer ZIP are in D:/ggf-apps/bernini. Older apps2review paths below are historical.
+The customer ZIP must contain ONLY INSTALL.bat, RUN.bat, UPDATE.bat, original
+about.nfo, original disclaimer.md, README.md, LICENSE, LICENSE-COMFYUI and NOTICE.
+Do not put application or vendor files in that ZIP. The root package_release.py
+uses this explicit allowlist and checks the finished archive.
+INSTALL.bat downloads the normal Codeberg/GitHub repository archive first,
+validates required files including comfy/ldm/models/autoencoder.py, backs up
+existing source, and then provisions private UV Python 3.11 and model downloads.
+Use /files-only for a clean bootstrap check without dependencies/model downloads;
+/dependencies-only also provisions packages but skips models. GGF_UNATTENDED=1
+disables pauses for isolated checks. Updaters preserve runtime alongside models,
+environment and private state. UI/inference behavior is unchanged by this repair.
+Drive code backup is separate from the tiny member installer; source updates
+continue to use host-generated Git archives, not a manually maintained source ZIP.
+Publishing/readback evidence is under E:/Websites/getgoingfast/work/bernini-installer-repair-20261014.
+This section supersedes historical instructions below to bundle tracked source
+inside a customer ZIP. Never reuse that earlier source-plus-installer builder.
+
 ## Turbo recommendation — October 9, 2026
 
 Turbo is now the primary Create action and Ctrl+Enter action. Full-size rendering

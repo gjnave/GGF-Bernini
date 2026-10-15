@@ -4,6 +4,14 @@ Publish individual files to Codeberg Cognibuild/GGF-Bernini and GitHub gjnave/GG
 Updates use host-generated repository archives like original Headliner; never
 require a manually rebuilt source ZIP or manifest. Check repository revisions.
 Customer installer ZIPs belong in the member download folder, not the repositories.
+Customer ZIP allowlist: INSTALL.bat, RUN.bat, UPDATE.bat, original about.nfo,
+original disclaimer.md, README.md, LICENSE, LICENSE-COMFYUI, NOTICE. Nothing else.
+Never include GGF-Bernini/, app source, vendor code, weights, models, runtimes,
+environments, caches, outputs or private settings in the customer ZIP. INSTALL.bat
+must download app source first from host-generated Codeberg/GitHub archives.
+Use ../package_release.py; it fails closed on any entry outside this allowlist.
+Drive may retain a code-only backup; it is not a manually rebuilt prerequisite
+for repository updates. Publish ordinary source changes as individual Git files.
 
 Read D:/apps2review/GGF-APP-BUILD-GUIDE.md before app work.
 Only modify this app and its parent installer/package scripts.

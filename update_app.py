@@ -15,7 +15,7 @@ from urllib.request import Request, urlopen
 import zipfile
 
 ROOT = Path(__file__).resolve().parent
-PRIVATE = {'.git','.venv','.gradio','models','outputs','jobs','logs','__pycache__',
+PRIVATE = {'.git','.venv','.gradio','models','runtime','outputs','jobs','logs','__pycache__',
            'network_settings.json','local_settings.json','app.lock','.installed-revision.json'}
 MARKER = '.installed-revision.json'
 
@@ -211,7 +211,10 @@ def main():
         before=(root/'requirements.txt').read_bytes()
         update(root)
         if before!=(root/'requirements.txt').read_bytes():
-            subprocess.run([sys.executable,'-m','pip','install','-r',str(root/'requirements.txt')],check=True)
+            uv=root/'runtime'/'uv.exe'
+            command=([str(uv),'pip','install','--python',sys.executable]
+                     if uv.is_file() else [sys.executable,'-m','pip','install'])
+            subprocess.run(command+['-r',str(root/'requirements.txt')],check=True)
     finally:
         if args.restart:
             flags=subprocess.CREATE_NO_WINDOW if os.name=='nt' else 0
