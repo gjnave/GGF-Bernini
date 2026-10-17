@@ -1,4 +1,12 @@
-# GGF Bernini
+![Bernini Video Elements](assets/bernini-video-elements.png)
+
+# Bernini Video Elements
+
+## A Get Going Fast Application
+
+### [Quick Setup Helper → GetGoingFast.pro/tools/bernini](https://getgoingfast.pro/tools/bernini/)
+
+The guided Windows setup is a separate member download. This public repository provides the app source and manual setup instructions; it does not contain the installer ZIP or model weights.
 
 Settings includes **Release models / free GPU memory** and **Stop server**.
 Release keeps the app and phone connection open; Bernini already unloads its
@@ -50,7 +58,7 @@ Bernini conditioning code are included with their upstream licenses.
 See HANDOFF.md for what has actually been tested. Model quality and speed depend
 on media and settings; do not treat a short smoke result as a universal benchmark.
 
-## Install from source and update
+## Manual installation from source
 
 The member download is installer-only: extract it, run `INSTALL.bat`, then
 `RUN.bat`. Setup downloads the individual app files from Codeberg, with GitHub
@@ -58,15 +66,27 @@ fallback, and provisions UV-managed Python 3.11, dependencies and model weights.
 The ZIP never includes application source, models, an environment or runtime.
 Keep all extracted root files together; setup creates `GGF-Bernini` beside them.
 
-Clone https://codeberg.org/Cognibuild/GGF-Bernini (or https://github.com/gjnave/GGF-Bernini). Install `uv`, then in Command Prompt enter that folder and run:
+1. Install [Git for Windows](https://git-scm.com/download/win) and [uv](https://docs.astral.sh/uv/getting-started/installation/). Open **Command Prompt** in a writable folder, then clone the source:
 
-```bat
-uv venv --managed-python --python 3.11 .venv
-uv pip install --python .venv\Scripts\python.exe torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0 --index-url https://download.pytorch.org/whl/cu130
-uv pip install --python .venv\Scripts\python.exe -r requirements.txt
-.venv\Scripts\python.exe download_models.py
-.venv\Scripts\python.exe app.py
-```
+   ```bat
+   git clone https://codeberg.org/Cognibuild/GGF-Bernini.git
+   cd GGF-Bernini
+   ```
+
+2. Create the private Python 3.11 environment and install dependencies:
+
+   ```bat
+   uv venv --managed-python --python 3.11 .venv
+   uv pip install --python .venv\Scripts\python.exe torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0 --index-url https://download.pytorch.org/whl/cu130
+   uv pip install --python .venv\Scripts\python.exe -r requirements.txt
+   ```
+
+3. Download the pinned model files from their upstream hosts and verify them with the app's downloader, then start the app:
+
+   ```bat
+   .venv\Scripts\python.exe download_models.py
+   .venv\Scripts\python.exe app.py
+   ```
 
 Use Settings → Check for updates → Update and restart, or run `.venv\Scripts\python.exe update_app.py` with the server closed. Updates use archives generated automatically from the current Codeberg/GitHub repository. No source ZIP is manually rebuilt. Git is not required for updates. Models, settings, jobs and results are preserved; replaced source is backed up.
 
